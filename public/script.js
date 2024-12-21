@@ -18,10 +18,10 @@ const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
 
-// Add event to all form input fields
+// add event to all form input fields
 for (let i = 0; i < formInputs.length; i++) {
   formInputs[i].addEventListener("input", function () {
-    // Check form validation
+    // check form validation
     if (form.checkValidity()) {
       formBtn.removeAttribute("disabled");
     } else {
@@ -29,30 +29,6 @@ for (let i = 0; i < formInputs.length; i++) {
     }
   });
 }
-
-// Handle form submission using AJAX
-form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent the default form submission
-
-  const formData = new FormData(form); // Collect form data
-
-  // Send data to Google Apps Script using fetch
-  fetch("<YOUR_GOOGLE_APPS_SCRIPT_URL>", {
-    method: "POST",
-    body: formData, // Send form data
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      // Optionally show a success message or update UI
-      alert("Your message has been sent!");
-      form.reset(); // Clear the form fields
-    })
-    .catch((error) => {
-      // Handle errors if any
-      console.error("Error:", error);
-      alert("There was an issue sending your message. Please try again.");
-    });
-});
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
